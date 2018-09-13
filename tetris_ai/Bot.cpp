@@ -331,6 +331,7 @@ void Bot::processMoves() {
             tetris.env_change = 1;
         }
     }
+    std::cerr << "MOV_END" << std::endl;
     tetris.clearLines();
 }
 

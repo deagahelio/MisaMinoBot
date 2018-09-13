@@ -84,6 +84,7 @@ namespace AI {
                 return false;
             m_cur_x += dx;
             wallkick_spin = 0;
+            std::cerr << "MOV_X " << dx << std::endl;
             return true;
         }
         bool tryYMove(int dy) {
@@ -92,6 +93,7 @@ namespace AI {
                 return false;
             m_cur_y += dy;
             wallkick_spin = 0;
+            std::cerr << "MOV_Y " << dy << std::endl;
             return true;
         }
         bool trySpin(int dSpin) {
@@ -103,6 +105,7 @@ namespace AI {
                 if ( m_pool.wallkickTest(m_cur_x, m_cur_y, gem, spin) ) {
                     m_cur = gem;
                     wallkick_spin = 2;
+                    std::cerr << "MOV_SPIN " << dSpin << std::endl;
                     return true;
                 } else {
                     return false;
@@ -110,6 +113,7 @@ namespace AI {
             }
             m_cur = gem;
             wallkick_spin = 1;
+            std::cerr << "MOV_SPIN " << dSpin << std::endl;
             return true;
         }
         bool trySpin180() {
@@ -120,6 +124,7 @@ namespace AI {
             }
             m_cur = gem;
             wallkick_spin = 1;
+            std::cerr << "MOV_180" << std::endl;
             return true;
         }
         bool tryHold() {
@@ -138,6 +143,7 @@ namespace AI {
                 m_cur_y = AI::gem_beg_y;
                 m_cur = AI::getGem(hold, 0);
             }
+            std::cerr << "HOLD " << hold << std::endl;
             if ( m_pool.isCollide(m_cur_x, m_cur_y, m_cur)) {
                 m_state = STATE_OVER;
                 return true;
@@ -163,6 +169,7 @@ namespace AI {
             m_drop_frame = m_frames;
             m_cur = AI::getGem( 0, 0);
             m_state = STATE_PASTED;
+            std::cerr << "MOV_DROP" << std::endl;
             return true;
         }
         void color_pool_clearLines() {
